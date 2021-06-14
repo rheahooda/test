@@ -1,0 +1,36 @@
+@mixin darkModeSwitch($attr, $value, $darkValue) {
+  #{$attr}: $value;
+  @include darkMode($attr, $darkValue);
+}
+
+@mixin darkMode($attr, $darkValue) {
+  .dark & {
+    #{$attr}: $darkValue;
+  }
+  @media (prefers-color-scheme: dark) {
+    #{$attr}: $darkValue;
+  }
+}
+
+// body.dark{
+//  --accent: black;
+// }
+
+body {
+    height: 100vh;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    color: blue;
+    //--accent: rgb(77, 3, 13);
+  }
+  
+  .box {
+    width: 300px;
+    padding: 20px;
+    @include darkModeSwitch(background,pink ,black);
+    h1 {
+     font-size: 20px;
+    }
+  }
+  
